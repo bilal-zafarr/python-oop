@@ -1,3 +1,51 @@
+"""
+In Python, both class methods and static methods are ways to define methods that are bound to a class rather than an instance of the class.
+However, they serve different purposes and have different behaviors.
+
+* Class Method: *
+
+Decorator: Defined using the @classmethod decorator.
+First Parameter: Takes a reference to the class as its first parameter, conventionally named cls.
+Accessing Class Variables: Can access and modify class-level variables.
+Instance Access: Can be called on the class itself or an instance of the class.
+
+Example:
+"""
+class MyClass:
+    class_variable = 10
+
+    @classmethod
+    def class_method(cls, x):
+        print(f'Class variable: {cls.class_variable}')
+        print(f'Passed argument: {x}')
+
+MyClass.class_method(5)
+
+"""
+* Static Method: *
+Decorator: Defined using the @staticmethod decorator.
+Parameters: Doesn't have a reference to the class or instance automatically, and doesn't need the first parameter to be cls or self.
+Accessing Class Variables: Cannot access or modify class-level variables unless explicitly passed as arguments.
+Instance Access: Can be called on the class itself or an instance of the class, but does not have access to instance-specific data.
+
+Example:
+"""
+class MyClass:
+    class_variable = 10
+
+    @staticmethod
+    def static_method(x):
+        print(f'Passed argument: {x}')
+
+MyClass.static_method(5)
+
+"""
+When to Use Each:
+Class Method: Use when the method needs access to or modification of class-level variables. For example, when the method performs an action that affects the entire class.
+Static Method: Use when the method is related to the class but doesn't need access to class or instance variables. For example, when the method performs a standalone action that doesn't depend on the state of the class or instance.
+In summary, class methods are more closely tied to the class and can access and modify class-level variables, while static methods are more standalone and don't have access to class or instance-specific data by default.
+"""
+
 import csv
 
 
@@ -50,3 +98,6 @@ class Item:
 
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
+    
+Item.instantiate_from_csv()
+print(Item.all)

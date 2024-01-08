@@ -18,10 +18,10 @@ class Item:
         '''
 
 # THE ONLY DIFFERENCE BETWEEN THOSE:
-# Static methods are not passing the object reference as the first argument in the background!
+# Static methods are not passing the class reference as the first argument in the background!
 
 
-# NOTE: However, those could be also called from instances.
+# note: However, those could be also called from instances.
 
 item1 = Item()
 item1.is_integer()
