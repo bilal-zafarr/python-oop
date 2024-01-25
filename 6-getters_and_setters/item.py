@@ -11,18 +11,19 @@ class Item:
         assert quantity >= 0, f"Quantity {quantity} is not greater or equal to zero!"
 
         # Assign to self object
-        self.__name = name
+        self.__name = name  # __ makes the attribure private / also called name mangling
         self.price = price
         self.quantity = quantity
 
         # Actions to execute
         Item.all.append(self)
 
-    @property
     # Property Decorator = Read-Only Attribute
+    @property
     def name(self):
         return self.__name
 
+    # If we also want to set the attribute, we can define a setter
     @name.setter
     def name(self, value):
         if len(value) > 10:
