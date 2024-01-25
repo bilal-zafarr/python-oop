@@ -2,8 +2,9 @@ import csv
 
 
 class Item:
-    pay_rate = 0.8 # The pay rate after 20% discount
+    pay_rate = 0.8  # The pay rate after 20% discount
     all = []
+
     def __init__(self, name: str, price: float, quantity=0):
         # Run validations to the received arguments
         assert price >= 0, f"Price {price} is not greater than or equal to zero!"
@@ -37,15 +38,15 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open('items.csv', 'r') as f:
+        with open("items.csv", "r") as f:
             reader = csv.DictReader(f)
             items = list(reader)
 
         for item in items:
             Item(
-                name=item.get('name'),
-                price=float(item.get('price')),
-                quantity=int(item.get('quantity')),
+                name=item.get("name"),
+                price=float(item.get("price")),
+                quantity=int(item.get("quantity")),
             )
 
     @staticmethod
@@ -61,4 +62,6 @@ class Item:
             return False
 
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+        return (
+            f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+        )

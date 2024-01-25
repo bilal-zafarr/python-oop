@@ -11,13 +11,16 @@ Instance Access: Can be called on the class itself or an instance of the class.
 
 Example:
 """
+
+
 class MyClass:
     class_variable = 10
 
     @classmethod
     def class_method(cls, x):
-        print(f'Class variable: {cls.class_variable}')
-        print(f'Passed argument: {x}')
+        print(f"Class variable: {cls.class_variable}")
+        print(f"Passed argument: {x}")
+
 
 MyClass.class_method(5)
 
@@ -30,12 +33,15 @@ Instance Access: Can be called on the class itself or an instance of the class, 
 
 Example:
 """
+
+
 class MyClass:
     class_variable = 10
 
     @staticmethod
     def static_method(x):
-        print(f'Passed argument: {x}')
+        print(f"Passed argument: {x}")
+
 
 MyClass.static_method(5)
 
@@ -50,8 +56,9 @@ import csv
 
 
 class Item:
-    pay_rate = 0.8 # The pay rate after 20% discount
+    pay_rate = 0.8  # The pay rate after 20% discount
     all = []
+
     def __init__(self, name: str, price: float, quantity=0):
         # Run validations to the received arguments
         assert price >= 0, f"Price {price} is not greater than or equal to zero!"
@@ -73,15 +80,15 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open('items.csv', 'r') as f:
+        with open("items.csv", "r") as f:
             reader = csv.DictReader(f)
             items = list(reader)
 
         for item in items:
             Item(
-                name=item.get('name'),
-                price=float(item.get('price')),
-                quantity=int(item.get('quantity')),
+                name=item.get("name"),
+                price=float(item.get("price")),
+                quantity=int(item.get("quantity")),
             )
 
     @staticmethod
@@ -98,6 +105,7 @@ class Item:
 
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
-    
+
+
 Item.instantiate_from_csv()
 print(Item.all)

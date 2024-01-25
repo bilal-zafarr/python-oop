@@ -23,8 +23,9 @@ Be mindful of the implications of modifying class attributes, as changes will af
 Consider using properties to control access to attributes for encapsulation and data integrity.
 """
 
+
 class Item:
-    pay_rate = 0.8 # The pay rate after 20% discount (Pay rate here is class attribute)
+    pay_rate = 0.8  # The pay rate after 20% discount (Pay rate here is class attribute)
     all = []
 
     def __init__(self, name: str, price: float, quantity=0):
@@ -33,7 +34,7 @@ class Item:
         assert quantity >= 0, f"Quantity {quantity} is not greater or equal to zero!"
 
         # Assign to self object
-        self.name = name # Instance attribute
+        self.name = name  # Instance attribute
         self.price = price
         self.quantity = quantity
 

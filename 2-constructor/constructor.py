@@ -1,5 +1,4 @@
 class Item:
-
     # The constructor function
     def __init__(self, name: str, price: float, quantity=0):
         # Run validations to the received arguments
@@ -13,6 +12,7 @@ class Item:
 
     def calculate_total_price(self):
         return self.price * self.quantity
+
 
 item1 = Item("Phone", 100, 1)
 item2 = Item("Laptop", 1000, 3)
