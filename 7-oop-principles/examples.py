@@ -1,6 +1,7 @@
 """
 Encapsulation is the bundling of data and the methods that operate on that data into a single unit, called a class.
 It is a technique of restricting a user from directly modifying the data members or variables of a class in order to maintain the integrity of the data. 
+Encapsulation is the practice of hiding information inside of a "black box" so that other developers working with the code don't have to worry about it.
 How do we do that? We restrict the access of the variables by switching the access-modifier to private and exposing public methods that we can use to access the data.
 
 Real-world analogy: Think of a smartphone as a class. The internal components (processor, battery, etc.) are encapsulated within the phone's body. 
@@ -80,8 +81,15 @@ print(my_square.calculate_area())  # Output: 16
 """
 Difference in Encapsulation and Abstraction
 
+While definitions are always changing, I like to think about abstraction and encapsulation in the following way.
 
+-> Abstraction is a technique that helps us identify what information and behavior should be encapsulated, and what should be exposed.
+-> Encapsulation is the technique for organizing the code to encapsulate what should be hidden, and make visible what is intended to be visible.
 
+-> We do encapsulation to achieve abstraction.
+-> Abstractions solves the problem at design level while Encapsulation solves it at implementation level
+
+-> The process of using the double underscore is a form of encapsulation. The process of deciding which data deserves to be hidden behind the double underscore is abstraction.
 """
 
 """
@@ -120,27 +128,82 @@ print(my_cat.speak())  # Output: Meow!
 """
 Polymorphism allows objects of different classes to be treated as objects of a common base class. 
 It enables a single interface to represent different types of objects.
+Polymorphism is the ability of a variable, function, or object to take on multiple forms.
+
+Same function having multiple forms, behaving differently under different conditions
+i.e. len(str), len(list)
 
 Example
 """
 
 
-class Circle:
-    def calculate_area(self, radius):
-        return 3.14 * radius**2
+class Creature:
+    def move(self):
+        print("the creature moves")
 
 
-class Square:
-    def calculate_area(self, side):
-        return side**2
+class Dragon(Creature):
+    def move(self):
+        print("the dragon flies")
 
 
-def print_area(shape, size):
-    print(f"Area: {shape.calculate_area(size)}")
+class Kraken(Creature):
+    def move(self):
+        print("the kraken swims")
 
 
-circle = Circle()
-square = Square()
+for creature in [Creature(), Dragon(), Kraken()]:
+    creature.move()
+# prints:
+# the creature moves
+# the dragon flies
+# the kraken swims
 
-print_area(circle, 5)  # Output: Area: 78.5
-print_area(square, 4)  # Output: Area: 16
+"""
+In this example the child classes, Dragon and Kraken are overriding the behavior of their parent class's move() method.
+When overriding methods, use the same function signature
+"""
+
+"""
+Function Overloading vs Function Overriding
+
+Function Overloading refers to defining multiple functions with the same name but with different parameter types or a different number of parameters.
+"""
+
+
+class OverloadExample:
+    def add(self, x, y):
+        return x + y
+
+    def add(self, x, y, z):
+        return x + y + z
+
+
+# Usage
+obj = OverloadExample()
+result = obj.add(
+    1, 2
+)  # This will raise an error because there is no add method with two parameters.
+
+# Note: While you can define functions with the same name, Python doesn't support traditional function overloading like some other languages do (e.g., C++ or Java). The last defined function with the same name will override the previous one.
+
+"""
+Function Overriding
+
+Function overriding occurs when a derived class provides a specific implementation for a method that is already defined in its base class.
+"""
+
+
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+
+class Dog(Animal):
+    def speak(self):
+        print("Dog barks")
+
+
+# Usage
+dog = Dog()
+dog.speak()  # Output: Dog barks
